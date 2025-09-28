@@ -9,5 +9,6 @@ const CategorySchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', default: null }, // ارجاع به دسته‌بندی والد
     image: {type: String, default: null},
+    count: { type: Number, default: 0 },
 });
 module.exports =  mongoose.model('Category' , CategorySchema)

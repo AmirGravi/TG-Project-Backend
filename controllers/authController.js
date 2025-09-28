@@ -10,6 +10,7 @@ const crypto = require('crypto')
 exports.checkUser = async (req, res) => {
     const { emailOrPhone } = req.body
     try {
+
         const user = await User.findOne({ email: emailOrPhone })
 
         if (user) {
@@ -123,7 +124,7 @@ exports.login = async (req, res) => {
         if (!user.isVerified) return res.status(403).json({ success: false, message: 'ایمیل تایید نشده است.' });
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(401).json({ success: false, message: 'رمز اشتباه است.' });
+        if (!isMatch) return res.status(401).json({ success: false, message: 'رمز عبور اشتباه است، لطفاً دوباره تلاش کنید' });
 
         const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.json({ success: true, token, message: 'ورود موفق' });

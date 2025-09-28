@@ -152,3 +152,18 @@ exports.deleteImage = async (req, res) => {
         res.status(500).send('خطا در حذف تصویر');
     }
 };
+// دریافت محصولات بر اساس دسته‌بندی
+exports.getProductsByCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params;
+        const products = await Product.find({ category: categoryId });
+
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'هیچ محصولی در این دسته‌بندی یافت نشد.' });
+        }
+
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'خطا در دریافت محصولات دسته‌بندی', error });
+    }
+};
