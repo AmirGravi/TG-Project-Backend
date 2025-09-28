@@ -21,6 +21,8 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.16",
     "postcss": "^8.4.49",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "tailwindcss": "^3.4.15",
     "vuedraggable": "^2.24.3"
   },
